@@ -56,14 +56,16 @@ def get_answer():
     return random.choice(word_list)
 
 def main():
+    guessed_letters = []
+    guessed_words = []
     print("Hello player, welcome to the hangman game")
     answer = get_answer()
     stage = 0
     hang_stages(stage)
+    print("Guessed letters", guessed_letters)
+    print("Guessed words", guessed_words)
     progress = "_ "*len(answer)
     print("Guess the word:",progress)
-    guessed_letters = []
-    guessed_words = []
     while stage <7:
         guess = input("Please guess a letter or a word").lower()
         if guess in guessed_letters or guess in guessed_words:
@@ -82,11 +84,15 @@ def main():
                         break
                     else:
                         hang_stages(stage)
+                        print("Guessed letters", guessed_letters)
+                        print("Guessed words", guessed_words)
                         print("Guess the word:",progress)
                 else:
                     print("You have made the wrong guess :(")
                     stage += 1
                     hang_stages(stage)
+                    print("Guessed letters", guessed_letters)
+                    print("Guessed words", guessed_words)
                     print("Guess the word:", progress)
             else:
                 guessed_words.append(guess)
@@ -99,6 +105,8 @@ def main():
                     print("You have made the wrong guess :(")
                     stage += 1
                     hang_stages(stage)
+                    print("Guessed letters", guessed_letters)
+                    print("Guessed words", guessed_words)
                     print("Guess the word:", progress)
     if stage<7:
         pass
